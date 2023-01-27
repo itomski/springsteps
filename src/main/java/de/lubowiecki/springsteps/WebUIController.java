@@ -4,6 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class WebUIController {
@@ -36,6 +41,42 @@ public class WebUIController {
         return "products";
     }
 
-    // Schreibe Ein Formular zu Hinzufügen von Produkten
-    // Verwende das Formular in einer Methode des WebUIControllers, so dass das Form aufrufbar ist
+    @PostMapping("/products")
+    public String saveProduct(String name, String description, double price, Model model) {
+        Product product = new Product(0, name, description, price);
+
+        // Validierung
+        Map<String, String> errorMap = new HashMap<>();
+
+        if(price < 0.01 || price > 100) {
+            errorMap.put("price", "Preis ist ungültig.");
+        }
+
+        if(name.length() == 0 || name.length() > 100) {
+            errorMap.put("name", "Name ist ungültig.");
+        }
+
+        if(description.length() < 10 || description.length() > 500) {
+            errorMap.put("description", "Beschreibung ist ungültig.");
+        }
+
+        if(errorMap.size() > 0) {
+            model.addAttribute("failed", true);
+            model.addAttribute("errors", errorMap);
+            model.addAttribute("product", product);
+        }
+        else {
+            service.add(product);
+            model.addAttribute("saved", true);
+        }
+
+        return "product-form";
+    }
+
+    @GetMapping("/products/new")
+    public String productForm(Model model) {
+        model.addAttribute("headline", "Neues Produkt");
+        model.addAttribute("ac", "products");
+        return "product-form";
+    }
 }

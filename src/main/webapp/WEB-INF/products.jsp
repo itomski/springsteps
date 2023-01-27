@@ -1,4 +1,4 @@
-<%@page contentType="text/html; UTF-8" language="java" %>
+<%@page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="de">
@@ -38,8 +38,12 @@
         <div class="row">
             <div class="col">
                 <h1>${headline}</h1>
-                <!-- table.table>thead>tr>th*4 -->
 
+                <div class="my-3">
+                    <a href="/products/new" class="btn btn-warning">Neues Produkt</a>
+                </div>
+
+                <!-- table.table>thead>tr>th*4 -->
                 <table class="table">
                     <thead>
                         <tr>

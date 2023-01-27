@@ -1,5 +1,6 @@
 package de.lubowiecki.springsteps;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,11 +12,18 @@ public class ProductService {
 
     private List<Product> products;
 
-    public ProductService() {
+    private NumberSimulator simulator;
+
+    private int counter;
+
+    @Autowired // Bindet automatisch ein Objekt des NumberSimulators ein
+    public ProductService(NumberSimulator simulator) {
         products = new ArrayList<>();
-        products.add(new Product(1, "Mütze", "100% Wolle", 19.99));
-        products.add(new Product(2, "Handschuhe", "100% Wolle", 29.99));
-        products.add(new Product(3, "Tasse, blau", "Keramik", 7.29));
+        /*
+        products.add(new Product(1, "Mütze", "100% Wolle", simulator.generateDouble(20)));
+        products.add(new Product(2, "Handschuhe", "100% Wolle", simulator.generateDouble(30)));
+        products.add(new Product(3, "Tasse, blau", "Keramik", simulator.generateDouble(10)));
+        */
     }
 
     public List<Product> findAll() {
@@ -30,5 +38,10 @@ public class ProductService {
             }
         }
         return Optional.empty();
+    }
+
+    public void add(Product product) {
+        product.setId(++counter);
+        products.add(product);
     }
 }
