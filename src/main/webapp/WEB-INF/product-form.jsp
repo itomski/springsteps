@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="de">
 <head>
@@ -61,7 +62,7 @@
                         --%>
                     </div>
                 </c:if>
-
+                <%--
                 <form action="/products" method="post">
                     <!-- div.mb-3*3>label.form-label+input.form-control -->
                     <input type="hidden" name="id" value="${product.id}">
@@ -78,12 +79,30 @@
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Preis</label>
-                        <input type="text" class="form-control ${errors.containsKey('price') ? 'is-invalid': ''}" name="price" id="price" value="${product.price}">
+                        <input type="text" class="form-control ${errors.containsKey('price') ? 'is-invalid': ''}" name="price" id="price" value="${(product.price) ? product.price : 0.0}">
                         <div class="invalid-feedback">${errors.get('price')}</div>
                     </div>
                     <!-- btn.btn.btn-success -->
                     <button class="btn btn-success">Speichern</button>
                 </form>
+                --%>
+
+                <form:form action="/products" modelAttribute="product">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <form:input class="form-control" path="name" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label"></label>
+                        <form:textarea rows="10" class="form-control" path="description"></form:textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Preis</label>
+                        <form:input class="form-control" path="price" />
+                    </div>
+                    <button class="btn btn-success">Speichern</button>
+                </form:form>
+
             </div>
         </div>
     </main>

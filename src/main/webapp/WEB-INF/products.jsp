@@ -51,6 +51,7 @@
                             <th>Name</th>
                             <th>Beschreibung</th>
                             <th>Preis</th>
+                            <th>&nbsp;</th><!-- Geschütztes Leerzeichen -->
                         </tr>
                     </thead>
 
@@ -62,6 +63,15 @@
                                 <td>${product.name}</td>
                                 <td>${product.description}</td>
                                 <td>${product.price}</td>
+                                <%--
+                                <td><a href="/products/edit/${product.id}" class="btn btn-success">Edit</a></td> <!-- a = Link. Ruft die URL(href) IMMER über GET auf -->
+                                --%>
+                                <td>
+                                    <form action="/products/edit" method="post"><!-- Form kann GET oder POST benutzen -->
+                                        <input type="hidden" name="id" value="${product.id}"><!-- beim POST werden diese Informationen NICHT an die URL gehängt -->
+                                        <button type="submit" class="btn btn-success">Edit</button>
+                                    </form>
+                                </td> <!-- button hat ohne Form-Tag keine Funktionalität -->
                             </tr>
                         </c:forEach>
                     </tbody>

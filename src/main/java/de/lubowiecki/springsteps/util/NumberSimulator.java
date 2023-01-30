@@ -1,4 +1,4 @@
-package de.lubowiecki.springsteps;
+package de.lubowiecki.springsteps.util;
 
 import org.springframework.stereotype.Component;
 
