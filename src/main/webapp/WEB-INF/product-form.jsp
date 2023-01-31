@@ -87,10 +87,10 @@
                 </form>
                 --%>
 
-                <form:form action="/products" modelAttribute="product">
+                <form:form action="/products" modelAttribute="product"><!-- product = Variable mit einem leeren Produkt -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <form:input class="form-control" path="name" />
+                        <form:input class="form-control" path="name" /><!-- path = Eigenschaft des Objektes -->
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label"></label>

@@ -1,6 +1,7 @@
 package de.lubowiecki.springsteps.controller;
 
 import de.lubowiecki.springsteps.model.Product;
+import de.lubowiecki.springsteps.repository.ProductRepository;
 import de.lubowiecki.springsteps.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +18,14 @@ public class ProductController {
     @Autowired // CDI - Context and Dependency Injection
     private ProductService service;
 
-    @GetMapping("")
+    @Autowired
+    private ProductRepository repo;
+
+    @GetMapping("") // http://localhost:8080/products (Nur GET)
     public String products(Model model) {
         model.addAttribute("headline", "Unsere Produkte");
         model.addAttribute("ac", "products");
-        model.addAttribute("productList", service.findAll());
+        model.addAttribute("productList", repo.findAll());
         return "products";
     }
 
@@ -83,6 +87,7 @@ public class ProductController {
         return "product-form";
     }
 
+    // http://localhost:8080/products (Nur POST)
     @PostMapping("") // Bekommt vom Formular ein Produkt-Objekt zurück
     public String saveAsObj(@ModelAttribute("product") Product product, Model model) {
 
@@ -106,7 +111,7 @@ public class ProductController {
             model.addAttribute("product", product);
         }
         else {
-            service.save(product); // TODO auch UPDATE implementieren
+            repo.save(product);
             model.addAttribute("product", new Product());
             model.addAttribute("saved", true);
         }

@@ -19,7 +19,7 @@
             <li class="nav-item">
                 <a href="/" class="nav-link ${(ac eq 'home') ? 'active' : ''}">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item"><!-- http://localhost:8080/team -->
                 <a href="/team" class="nav-link ${(ac eq 'team') ? 'active' : ''}">Team</a>
             </li>
             <li class="nav-item">
