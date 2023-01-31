@@ -1,6 +1,7 @@
 package de.lubowiecki.springsteps.controller;
 
 import de.lubowiecki.springsteps.model.Product;
+import de.lubowiecki.springsteps.model.ProductDto;
 import de.lubowiecki.springsteps.repository.ProductRepository;
 import de.lubowiecki.springsteps.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +90,11 @@ public class ProductController {
 
     // http://localhost:8080/products (Nur POST)
     @PostMapping("") // Bekommt vom Formular ein Produkt-Objekt zurück
-    public String saveAsObj(@ModelAttribute("product") Product product, Model model) {
+    public String saveAsObj(@ModelAttribute ProductDto productDto, Model model) {
+
+        // DTO wird nicht in der Datenbank gespeichert und ist keine Entity
+        // Es wird in eine Entity Konvertiert bevor es gespeichert wird
+        Product product = productDto.convert();
 
         Map<String, String> errorMap = new HashMap<>();
 

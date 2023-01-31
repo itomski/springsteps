@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.util.Locale;
 
 // JavaBean Konvention
 @Entity
@@ -22,7 +26,17 @@ public class Product implements Serializable {
     @Column(length = 800)
     private String description;
 
+    private LocalDateTime availableAt;
+
     private double price;
+
+    public LocalDateTime getAvailableAt() {
+        return availableAt;
+    }
+
+    public void setAvailableAt(LocalDateTime availableAt) {
+        this.availableAt = availableAt;
+    }
 
     public Product() {
     }
@@ -60,6 +74,12 @@ public class Product implements Serializable {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getPriceDE() {
+        DecimalFormat priceFmt = (DecimalFormat) NumberFormat.getNumberInstance(Locale.GERMANY);
+        priceFmt.setMaximumFractionDigits(2);
+        return priceFmt.format(price);
     }
 
     public void setPrice(double price) {

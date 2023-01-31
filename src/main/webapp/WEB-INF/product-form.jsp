@@ -88,17 +88,26 @@
                 --%>
 
                 <form:form action="/products" modelAttribute="product"><!-- product = Variable mit einem leeren Produkt -->
+
+                    <form:hidden path="id" />
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <form:input class="form-control" path="name" /><!-- path = Eigenschaft des Objektes -->
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label"></label>
-                        <form:textarea rows="10" class="form-control" path="description"></form:textarea>
+                        <label for="description" class="form-label">Beschreibung</label>
+                        <form:textarea rows="5" class="form-control" path="description"></form:textarea>
                     </div>
+
                     <div class="mb-3">
-                        <label for="price" class="form-label">Preis</label>
-                        <form:input class="form-control" path="price" />
+                        <label for="availableAt" class="form-label">Verfügbar ab</label>
+                        <form:input type="datetime-local" class="form-control" path="availableAt" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="priceDE" class="form-label">Preis</label>
+                        <form:input class="form-control" path="priceDE" />
                     </div>
                     <button class="btn btn-success">Speichern</button>
                 </form:form>

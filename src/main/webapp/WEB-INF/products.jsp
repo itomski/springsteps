@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="de">
 <head>
@@ -50,6 +51,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Beschreibung</th>
+                            <th>Verfügbar ab</th>
                             <th>Preis</th>
                             <th>&nbsp;</th><!-- Geschütztes Leerzeichen -->
                         </tr>
@@ -62,7 +64,8 @@
                                 <td>${product.id}</td>
                                 <td>${product.name}</td>
                                 <td>${product.description}</td>
-                                <td>${product.price}</td>
+                                <td>${product.availableAt}</td>
+                                <td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="€" /></td>
                                 <%--
                                 <td><a href="/products/edit/${product.id}" class="btn btn-success">Edit</a></td> <!-- a = Link. Ruft die URL(href) IMMER über GET auf -->
                                 --%>
