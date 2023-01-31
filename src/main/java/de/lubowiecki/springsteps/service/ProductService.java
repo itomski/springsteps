@@ -39,7 +39,7 @@ public class ProductService {
 
     public Optional<Product> findById(long id) {
 
-        return repo.findById(id);
+        return repo.findById(id); // Liefert ein gefüllte Optional, wenn etwas für diese ID gefunden wurde
 
         /*
         Product product = null;
