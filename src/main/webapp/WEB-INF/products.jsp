@@ -44,6 +44,14 @@
                     <a href="/products/new" class="btn btn-warning">Neues Produkt</a>
                 </div>
 
+                <ul class="nav nav-pills my-3">
+                    <c:forEach items="${categories}" var="category">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products/category/${category.id}">${category.name}</a>
+                    </li>
+                    </c:forEach>
+                </ul>
+
                 <!-- table.table>thead>tr>th*4 -->
                 <table class="table">
                     <thead>
@@ -52,6 +60,7 @@
                             <th>Name</th>
                             <th>Beschreibung</th>
                             <th>Verfügbar ab</th>
+                            <th>Kategorie</th>
                             <th>Preis</th>
                             <th>&nbsp;</th><!-- Geschütztes Leerzeichen -->
                         </tr>
@@ -65,6 +74,7 @@
                                 <td>${product.name}</td>
                                 <td>${product.description}</td>
                                 <td>${product.availableAt}</td>
+                                <td>${product.category.name}</td>
                                 <td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="€" /></td>
                                 <%--
                                 <td><a href="/products/edit/${product.id}" class="btn btn-success">Edit</a></td> <!-- a = Link. Ruft die URL(href) IMMER über GET auf -->

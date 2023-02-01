@@ -106,6 +106,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="category" class="form-label">Kategorie</label>
+                        <form:select path="category" class="form-select">
+                            <form:options items="${categories}" itemValue="id" itemLabel="name" />
+                        </form:select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="priceDE" class="form-label">Preis</label>
                         <form:input class="form-control" path="priceDE" />
                     </div>

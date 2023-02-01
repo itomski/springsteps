@@ -23,6 +23,7 @@ public class ProductDto {
     private String availableAt;
 
     private String price;
+    private Category category;
 
     public void setId(long id) {
         this.id = id;
@@ -48,6 +49,10 @@ public class ProductDto {
         this.setPrice(price);
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Product convert() {
         Product p = new Product();
         p.setId(id);
@@ -56,6 +61,7 @@ public class ProductDto {
         p.setPrice(Double.parseDouble(price.replace(",", ".")));
         DateTimeFormatter fmt = DateTimeFormatter.ISO_DATE_TIME;
         p.setAvailableAt(LocalDateTime.parse(availableAt, fmt));
+        p.setCategory(category);
         return p;
     }
 }

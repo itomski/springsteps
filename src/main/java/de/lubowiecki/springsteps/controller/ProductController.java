@@ -2,6 +2,7 @@ package de.lubowiecki.springsteps.controller;
 
 import de.lubowiecki.springsteps.model.Product;
 import de.lubowiecki.springsteps.model.ProductDto;
+import de.lubowiecki.springsteps.repository.CategoryRepository;
 import de.lubowiecki.springsteps.repository.ProductRepository;
 import de.lubowiecki.springsteps.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,28 @@ public class ProductController {
     @Autowired
     private ProductRepository repo;
 
+    @Autowired // FieldInjection. Feld darf nicht final sein
+    private CategoryRepository categoryRepository;
+
     @GetMapping("") // http://localhost:8080/products (Nur GET)
     public String products(Model model) {
         model.addAttribute("headline", "Unsere Produkte");
         model.addAttribute("ac", "products");
         model.addAttribute("productList", repo.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "products";
+    }
+
+    @GetMapping("/category/{id}") // http://localhost:8080/products/category/123 (Nur GET)
+    public String productsByCategory(@PathVariable Long id, Model model) {
+        model.addAttribute("headline", "Unsere Produkte");
+        model.addAttribute("ac", "products");
+
+        categoryRepository.findById(id).ifPresent(c -> {
+            model.addAttribute("productList", c.getProducts()); // Es werden alle Objekte aus der DB geholt, die mit dieser Kategorie verbunden sind
+        });
+
+        model.addAttribute("categories", categoryRepository.findAll());
         return "products";
     }
 
@@ -69,6 +87,7 @@ public class ProductController {
         model.addAttribute("headline", "Neues Produkt");
         model.addAttribute("ac", "products");
         model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "product-form";
     }
 
