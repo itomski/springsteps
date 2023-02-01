@@ -1,9 +1,6 @@
 package de.lubowiecki.springsteps.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -29,6 +26,9 @@ public class Product implements Serializable {
     private LocalDateTime availableAt;
 
     private double price;
+
+    @ManyToOne
+    private Category category;
 
     public LocalDateTime getAvailableAt() {
         return availableAt;
@@ -84,5 +84,13 @@ public class Product implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
