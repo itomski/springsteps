@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="fragments.html :: head('Springsteps - Startseite')"></head>
+
+    <body>
+
+        <nav th:replace="fragments.html :: mainNav"></nav>
+
+        <!-- main.container>div.row>div.col -->
+
+        <main class="container">
+            <div class="row">
+                <!-- eine Zeile = 12 Teile -->
+
+                <div class="col">
+
+                    <h1 th:text="${headline}"></h1>
+                    <p th:text="${content}"></p>
+
+                </div>
+
+                <!--
+                <div class="col-6">
+                    <p>Das ist die zweite Spalte</p>
+                </div>
+
+                <div class="col">
+                    <p>Das ist die zweite Spalte</p>
+                </div>
+                -->
+            </div>
+        </main>
+
+
+        <th:block th:replace="fragments.html :: foot"></th:block>
+    </body>
+</html>

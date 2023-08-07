@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="fragments.html :: head('Springsteps - Produkte')"></head>
+
+    <body>
+
+        <nav th:replace="fragments.html :: mainNav"></nav>
+
+        <main class="container">
+            <div class="row">
+                <div class="col">
+
+                    <h1 th:text="${headline}"></h1>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Preis</th>
+                            <th>Anzahl</th>
+                            <th>Im Sortiment seit</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.amount}"></td>
+                            <td th:text="${product.availableSince}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </main>
+
+        <th:block th:replace="fragments.html :: foot"></th:block>
+
+    </body>
+</html>
