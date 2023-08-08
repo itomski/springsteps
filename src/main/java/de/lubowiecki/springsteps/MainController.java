@@ -33,6 +33,7 @@ public class MainController {
         return "list"; // Wir verwenden list.html
     }
 
+    // http://localhost:8080/new
     @GetMapping("/new")
     public String form(Model model) {
         model.addAttribute("headline", "Neues Produkt");
@@ -49,12 +50,14 @@ public class MainController {
     ...
      */
 
+    // Post: http://localhost:8080/save
     @PostMapping("/save")
     public String save(Product product) {
         repository.save(product);
         return "redirect:/products";
     }
 
+    // http://localhost:8080/edit/10
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("headline", "Produkt bearbeiten");
@@ -64,6 +67,7 @@ public class MainController {
         return "form";
     }
 
+    // http://localhost:8080/delete/10
     // @PathVariable liest den Wert für den Parameter aus der URL
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id) {

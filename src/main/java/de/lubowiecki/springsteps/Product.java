@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Product {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue // Autoincrement
     private int id;
 
     @Column(length = 100)
