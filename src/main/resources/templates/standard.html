@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 
+    <!--
+        Templates enthalten HTML, CSS und Thymeleaf-Platzhalter.
+        Thymeleaf-Platzhalter/Funktionen erkennt man am Prefix th:
+        Thymeleaf ist eine Template-Engine. Sie ermöglich statisches HTML
+        dynamisch zu machen.
+     -->
+
+    <!-- th:replace Dieser Tag wird durch ein Fragment aus einer anderen Datei ersetzt -->
     <head th:replace="~{fragments.html :: head('Springsteps - Startseite')}"></head>
 
     <body>
@@ -12,6 +20,10 @@
 
                 <div class="col">
 
+                    <!--
+                        th:text liest den Wert für den namen (Schlüssel) des Platzhalters aus dem Model
+                        das vom Controller befüllt und an dieses Template weitergegeben wurde
+                    -->
                     <h1 class="display-3" th:text="${headline}"></h1>
                     <p th:text="${content}"></p>
 

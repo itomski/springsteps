@@ -12,12 +12,14 @@
 
     <body>
 
+        <!-- th:fragment deklariert einen Namen für dieses Fragment -->
         <nav class="container mb-3" th:fragment="mainNav">
             <div class="row">
                 <div class="col">
 
                     <ul class="nav nav-tabs mt-3">
                         <li class="nav-item">
+                            <!-- th:classappend fügt dem Tag abhängig vom Zustand des Platzthalters cur eine CSS-Klasse zu -->
                             <a class="nav-link" th:classappend="${cur} == 'home' ? 'active' : ''"  href="/">Home</a>
                         </li>
 
