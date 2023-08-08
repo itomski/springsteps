@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments.html :: head('Springsteps - Neues Produkt')}"></head>
+
+    <body>
+
+        <nav th:replace="~{fragments.html :: mainNav}"></nav>
+
+        <main class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-6">
+
+                    <h1 class="display-3" th:text="${headline}"></h1>
+
+                    <form action="/save" method="post">
+
+                        <input type="hidden" name="id" id="id" th:value="${product.id}">
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Produktname</label>
+                            <input type="text" class="form-control" name="name" id="name" th:value="${product.name}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Preis</label>
+                            <input type="text" class="form-control" name="price" id="price" th:value="${product.price}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Menge</label>
+                            <input type="text" class="form-control" name="amount" id="amount" th:value="${product.amount}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="availableSince" class="form-label">Im Sortiment seit</label>
+                            <input type="text" class="form-control" name="availableSince" id="availableSince" th:value="${product.availableSince}">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Speichern</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+
+        <th:block th:replace="~{fragments.html :: foot}"></th:block>
+    </body>
+</html>

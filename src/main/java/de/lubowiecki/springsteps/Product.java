@@ -1,11 +1,18 @@
 package de.lubowiecki.springsteps;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @GeneratedValue
     private int id;
 
+    @Column(length = 100)
     private String name;
 
     private double price;
