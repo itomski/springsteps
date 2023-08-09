@@ -1,4 +1,4 @@
-package de.lubowiecki.springsteps;
+package de.lubowiecki.springsteps.converter;
 
 import org.springframework.core.convert.converter.Converter;
 
