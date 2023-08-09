@@ -1,8 +1,10 @@
 package de.lubowiecki.springsteps;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,11 +82,18 @@ public class MainController {
     }
 
     // Post: http://localhost:8080/save
+    // BindingResult enthält das Ergebnis der Validierung
     @PostMapping("/save")
-    public String save(Product product) { // Formulardaten werden zu einem Produkt-Objekt zusammengesetzt
+    public String save(@Valid Product product, BindingResult result, Model model) { // Formulardaten werden zu einem Produkt-Objekt zusammengesetzt
         // save: Speichert ein Objekt in der DB
         // ist die id = 0 wird ein neues Objekt erzeugt
         // ist es != 0 und ein passendes Objekt ist in der DB, wird es geändert
+
+        if(result.hasErrors()) { // Wenn Fehler, dann zurück zum Formular
+            model.addAttribute("headline", "Produkt");
+            return "form";
+        }
+
         repository.save(product);
         return "redirect:/products"; // Umleitung auf eine andere URL
     }

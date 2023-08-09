@@ -1,24 +1,33 @@
 package de.lubowiecki.springsteps;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "products")
 public class Product {
+
+    private static DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     @Id
     @GeneratedValue // Autoincrement
     private int id;
 
     @Column(length = 100)
+    @NotEmpty
     private String name;
 
+    @Positive
     private double price;
 
+    @PositiveOrZero
     private int amount;
 
+    @NotNull(message = "Muss ein gültiges Datum sein")
+    @PastOrPresent
     private LocalDate availableSince;
 
     public Product() {
@@ -65,6 +74,9 @@ public class Product {
 
     public LocalDate getAvailableSince() {
         return availableSince;
+    }
+    public String getAvailableSinceDe() {
+        return availableSince.format(DATE_FMT);
     }
 
     public void setAvailableSince(LocalDate availableSince) {

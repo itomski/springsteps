@@ -13,28 +13,32 @@
 
                     <h1 class="display-3" th:text="${headline}"></h1>
 
-                    <form action="/save" method="post">
+                    <form action="/save" method="post" th:object="${product}">
 
-                        <input type="hidden" name="id" id="id" th:value="${product.id}">
+                        <input type="hidden" th:field="*{id}">
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Produktname</label>
-                            <input type="text" class="form-control" name="name" id="name" th:value="${product.name}">
+                            <input type="text" class="form-control" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Preis</label>
-                            <input type="text" class="form-control" name="price" id="price" th:value="${product.price}">
+                            <input type="text" class="form-control" th:field="*{price}" th:classappend="${#fields.hasErrors('price')} ? 'is-invalid' : ''">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="amount" class="form-label">Menge</label>
-                            <input type="text" class="form-control" name="amount" id="amount" th:value="${product.amount}">
+                            <input type="text" class="form-control" th:field="*{amount}" th:classappend="${#fields.hasErrors('amount')} ? 'is-invalid' : ''">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="availableSince" class="form-label">Im Sortiment seit</label>
-                            <input type="text" class="form-control" name="availableSince" id="availableSince" th:value="${product.availableSince}">
+                            <input type="text" class="form-control" th:field="*{availableSince}" th:classappend="${#fields.hasErrors('availableSince')} ? 'is-invalid' : ''">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('availableSince')}" th:errors="*{availableSince}"></div>
                         </div>
 
                         <button type="submit" class="btn btn-success">Speichern</button>

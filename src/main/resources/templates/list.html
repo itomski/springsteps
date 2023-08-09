@@ -31,7 +31,7 @@
                                 <td th:text="${product.name}"></td>
                                 <td th:text="${product.price}"></td>
                                 <td th:text="${product.amount}"></td>
-                                <td th:text="${product.availableSince}"></td>
+                                <td th:text="${#temporals.format(product.availableSince, 'dd.MM.yy')}"></td>
                                 <td>
                                     <a th:href="@{/edit/{id}(id=${product.id})}"><i class="bi bi-pencil-square" style="font-size: 1.5rem" title="Bearbeiten"></i></a>
                                     <a th:href="@{/delete/{id}(id=${product.id})}"><i class="bi bi-trash" style="font-size: 1.5rem" title="Löschen"></i></a>
