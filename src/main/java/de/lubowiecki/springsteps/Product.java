@@ -1,14 +1,25 @@
 package de.lubowiecki.springsteps;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id // Primärschlüssel
+    @GeneratedValue // Autoincrement
+    private long id;
+
+    @Column(nullable = false, length = 150)
     private String name;
+
+    @Column(length = 1000)
     private String description;
+
     private int quantity;
 
-    @JsonIgnore
+    //@JsonIgnore
     private double price;
 
     public Product(String name, String description, int quantity, double price) {

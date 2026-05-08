@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Springsteps</title>
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <h1 th:text="${title}"></h1>
@@ -17,5 +18,25 @@
             </ul>
         </nav>
 
+        <hr>
+
+        <table th:if="${showProducts}">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Beschreibung</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${products}">
+                    <td th:text="${p.name}"></td>
+                    <td th:text="${p.description}"></td>
+                    <td th:text="${p.quantity}"></td>
+                    <td th:text="${p.price}"></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
