@@ -64,7 +64,11 @@ public class Product {
         this.price = price;
     }
 
-    public double getSpecialPrice() {
-        return price * 0.75;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
